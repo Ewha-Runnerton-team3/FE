@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Header from "../../components/layout/Header"
 import MenuBar from "../../components/layout/MenuBar"
 
-import Input from "./Input"
-import Result from "./Result"
+import Input from "./components/Input"
+import Result from "./components/Result"
 
 const Recommend = () => {
     // 제출 여부를 위한 상태

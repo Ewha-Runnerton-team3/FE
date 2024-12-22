@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Header from "../../components/layout/Header"
 import MenuBar from "../../components/layout/MenuBar"
 
+import SavedRecipe from "./components/SavedRecipe"
+
 const Favorite = () => {
     // 레시피/재료 토글 상태
     const [toggle, setToggle] = useState<number>(0);
@@ -27,6 +29,7 @@ const Favorite = () => {
               </div>
               
               {/** 렌더링 */}
+              <SavedRecipe />
             </>
           ) : (
             <>
