@@ -56,36 +56,43 @@ const LoginPage = () => {
     return (
         <div>
             <Header/>
-            <div className="bg-yellow-50">
-                <h2>서비스 아이콘</h2>
+            <div className="bg-yellow-50 h-screen flex justify-center py-10">
+                <div className="space-y-5">
+                    <h2>서비스 아이콘</h2>
+                    <div className="space-y-2">
+                        <p>아이디</p>
+                        <input
+                            className="border border-goldbrown-50 rounded-lg py-1 px-2 w-[250px]"
+                            type="id"
+                            value={id}
+                            onChange={(e) => setId(e.target.value)}
+                            placeholder="아이디를 입력해주세요"
+                        />
+                    </div>
+                    
+                    <div className="space-y-2 pb-5">
+                        <p>비밀번호</p>
+                        <input
+                            className="border border-goldbrown-50 rounded-lg py-1 px-2 w-[250px]"
+                            type="pwd"
+                            value={pwd}
+                            onChange={(e) => setPwd(e.target.value)}
+                            placeholder="비밀번호를 입력해주세요"
+                        />
+                    </div>
 
-                <p>아이디</p>
-                <input
-                    type="id"
-                    value={id}
-                    onChange={(e) => setId(e.target.value)}
-                    placeholder="아이디를 입력해주세요"
-                />
-                
-                <p>비밀번호</p>
-                <input
-                    type="pwd"
-                    value={pwd}
-                    onChange={(e) => setPwd(e.target.value)}
-                    placeholder="비밀번호를 입력해주세요"
-                />
-
-                <div
-                    className="bg-grayscale-90 text-grayscale-0"
-                    onClick={handleLogin}>
-                    로그인
-                </div>
+                    <div
+                        className="bg-grayscale-90 text-grayscale-0 border border-goldbrown-50 rounded-lg py-1 px-2 text-center cursor-pointer"
+                        onClick={handleLogin}>
+                        로그인
+                    </div>
 
 
-                <div
-                    className="bg-lemon-50 text-goldbrown-80"
-                    onClick={handleKakaoLogin}>
-                    카카오 로그인
+                    <div
+                        className="bg-lemon-50 text-goldbrown-80 border border-goldbrown-50 rounded-lg py-1 px-2 text-center cursor-pointer"
+                        onClick={handleKakaoLogin}>
+                        카카오 로그인
+                    </div>
                 </div>
             </div>
         </div>
