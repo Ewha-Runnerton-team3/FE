@@ -1,4 +1,4 @@
-// 레시피 URL
+// URL
 export const loginURL = "/auth/login";
 
 // 저장
