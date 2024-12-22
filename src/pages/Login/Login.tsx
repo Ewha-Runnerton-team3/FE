@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext'; // useAuth 훅 임포트
 import Header from "../../components/layout/Header"
-import { useNavigate } from 'react-router-dom'; // useNavigate 훅 import
+import { useNavigate } from 'react-router-dom';
 import { PATHS } from '../../constants/paths';
 
 import { postLogin } from "../../api/LoginApiService";
