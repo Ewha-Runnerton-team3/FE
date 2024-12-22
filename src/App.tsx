@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import { AuthProvider, useAuth } from './context/AuthContext'; // 전역 상태 관리
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { PATHS } from './constants/paths';
 
@@ -6,18 +7,23 @@ import Main from "./pages/Main/Main"
 import History from "./pages/History/History";
 import Favorite from "./pages/Favorite/Favorite";
 import Recommend from "./pages/Recommend/Recommend";
+import Login from "./pages/Login/Login";
 
 function App() {
-
   return (
-    <Router>
-      <Routes>
-        <Route path={PATHS.HOME} element={<Main />} />
-        <Route path={PATHS.HISTORY} element={<History />} />
-        <Route path={PATHS.FAVORITE} element={<Favorite />} />
-        <Route path={PATHS.RECOMMEND} element={<Recommend />} />
-      </Routes>
-    </Router>
+    <AuthProvider> {/* 전역 상태 관리 */}
+      <Router>
+        <Routes>
+          <Route path={PATHS.HOME} element={<Main />} />
+          <Route 
+            path={PATHS.HISTORY} 
+            element={<History/>}
+          />
+          <Route path={PATHS.FAVORITE} element={<Favorite />} />
+          <Route path={PATHS.RECOMMEND} element={<Recommend />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   )
 }
 

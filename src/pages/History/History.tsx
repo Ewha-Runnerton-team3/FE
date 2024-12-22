@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useAuth } from '../../context/AuthContext';
 import Header from "../../components/layout/Header"
 import MenuBar from "../../components/layout/MenuBar"
 
 import { getRecipe } from "../../api/RecipeHistoryApiService";
 import { Recipe } from "../../api/RecipeApiType.ts";
 
-const History = ({ userId }: { userId: number }) => {
+const History = () => {
+    // 로그인 정보 가져오기
+    const { userId } = useAuth();
+
     // 페이지 상태 관리
     const itemsPerPage = 3; // 한 페이지에 보여줄 항목 수
     const [currentItems, setCurrentItems] = useState<Recipe[]>([]); // 현재 페이지에 표시할 아이템들
@@ -16,6 +20,9 @@ const History = ({ userId }: { userId: number }) => {
 
     // 아이템 가져오기
     const fetchData = async () => {
+      if(userId === null)
+        return;
+      
       try {
         // getRecipe 함수 호출
         const data = await getRecipe({ userId });
