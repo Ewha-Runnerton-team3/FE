@@ -22,6 +22,7 @@ export interface RecipePostResponseType {
 
 ////////////////////////////////////////////////////////
 export interface Recipe {
+    userId: number;
     id: number;
     name: string;
     totalTime: string;
@@ -29,6 +30,8 @@ export interface Recipe {
     difficultyScore: number;
     ingredients: Ingredient[];
     steps: Step[];
+    createdAt: string;
+    updatedAt: string;
     savedAt: string;
 }
 
