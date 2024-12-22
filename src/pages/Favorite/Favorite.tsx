@@ -97,7 +97,7 @@ const Favorite = () => {
               </div>
               
               {/** 렌더링 */}
-              <SavedIngredient totalItems={recipeItems}/>
+              <SavedIngredient/>
             </>
           )}
         </div>
