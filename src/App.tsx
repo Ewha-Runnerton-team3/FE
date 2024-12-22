@@ -8,6 +8,7 @@ import History from "./pages/History/History";
 import Favorite from "./pages/Favorite/Favorite";
 import Recommend from "./pages/Recommend/Recommend";
 import Login from "./pages/Login/Login";
+import Signup from "./pages/Signup/Signup";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           />
           <Route path={PATHS.FAVORITE} element={<Favorite />} />
           <Route path={PATHS.RECOMMEND} element={<Recommend />} />
+          <Route path={PATHS.LOGIN} element={<Login />} />
+          <Route path={PATHS.SIGNUP} element={<Signup />} />
         </Routes>
       </Router>
     </AuthProvider>

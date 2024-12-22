@@ -3,4 +3,6 @@ export const PATHS = {
     HISTORY: '/history',
     FAVORITE: '/favorite',
     RECOMMEND: '/recommend',
+    LOGIN: '/login',
+    SIGNUP: '/signup',
 };
