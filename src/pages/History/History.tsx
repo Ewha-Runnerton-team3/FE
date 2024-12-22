@@ -1,0 +1,13 @@
+import Header from "../../components/layout/Header"
+import MenuBar from "../../components/layout/MenuBar"
+
+const History = () => {
+    return (
+        <div>
+          <Header/>
+          <MenuBar/>
+        </div>
+    );
+}
+
+export default History
