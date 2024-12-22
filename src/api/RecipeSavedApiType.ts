@@ -2,37 +2,17 @@
 export const recipeURL = "/recipe/saved";
 
 // 가져오기(조회)
-// GET 파라미터
+// GET 파라미터 (경로 파라미터로 사용하기로 결정, 쿼리 파라미터는 안 보냄)
 export interface RecipeGetParamsType {
     userId: number;
-    receipeId: number;
 };
 
 // GET 응답
+import { Recipe } from "./RecipeApiType.ts";
 export interface RecipeGetResponseType {
     recipes: Recipe[];
 }
 
-export interface Recipe {
-    id: number;
-    name: string;
-    totalTime: string;
-    difficulty: string;
-    difficultyScore: number;
-    ingredients: Ingredient[];
-    steps: Step[];
-    savedAt: string;
-}
-
-export interface Ingredient {
-    ingredient: string;
-    quantity: string;
-}
-
-export interface Step {
-    id: number;
-    step: string;
-}
 
 
 ////////////////////////////////////////////////////////

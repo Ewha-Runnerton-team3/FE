@@ -8,12 +8,12 @@ from "./RecipeSavedApiType";
 
 /** 백엔드와 API 연동 */
 // 조회: GET 요청 및 응답받기
-export const getRecipe = async ({userId, receipeId}: RecipeGetParamsType) => {
+export const getRecipe = async ({userId}: RecipeGetParamsType) => {
   try {
-    const response = await AxiosInstance.get(`${BASE_URL}${recipeURL}`, 
+    const response = await AxiosInstance.get(`${BASE_URL}${recipeURL}/${userId}`, 
       // 쿼리 파라미터 전달
       {
-        params: {userId, receipeId},
+        params: { },
       }
     );
 
