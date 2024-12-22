@@ -2,18 +2,54 @@ import React, { useState, useEffect } from "react";
 import Header from "../../components/layout/Header"
 import MenuBar from "../../components/layout/MenuBar"
 
-const History = () => {
+import { getRecipe } from "../../api/RecipeHistoryApiService";
+import { Recipe } from "../../api/RecipeApiType.ts";
+
+const History = ({ userId }: { userId: number }) => {
     // 페이지 상태 관리
     const itemsPerPage = 3; // 한 페이지에 보여줄 항목 수
-    const [currentItems, setCurrentItems] = useState<string[]>([]); // 현재 페이지에 표시할 아이템들
-    //const [totalItems, setTotalItems] = useState<string[]>([]);     // 전체 아이템들
-    const [totalItems, setTotalItems] = useState<string[]>(["블라블라", "블라블라", "블라블라", "블라블라"]);     // 전체 아이템들, 임시1, 임시2
+    const [currentItems, setCurrentItems] = useState<Recipe[]>([]); // 현재 페이지에 표시할 아이템들
+    const [totalItems, setTotalItems] = useState<Recipe[]>([]);     // 전체 아이템들
+    //const [totalItems, setTotalItems] = useState<string[]>(["블라블라", "블라블라", "블라블라", "블라블라"]);     // 전체 아이템들, 임시1, 임시2
     const [currentPage, setCurrentPage] = useState(1);    // 아이템 페이지 상태 관리
     const [totalPages, setTotalPages] = useState(1);      // 전체 페이지 상태 관리
+
+    // 아이템 가져오기
+    const fetchData = async () => {
+      try {
+        // getRecipe 함수 호출
+        const data = await getRecipe({ userId });
+        
+        // recipes 배열 추출
+        const recipes: Recipe[] = data.recipes;
+
+        setTotalItems(recipes);
+
+        // 받은 recipes 배열을 순회하면서 각각의 Recipe 객체 데이터 파싱
+        recipes.forEach((recipe) => {
+          /*
+          console.log(`Recipe Name: ${recipe.name}`);
+          console.log(`Total Time: ${recipe.totalTime}`);
+          console.log(`Difficulty: ${recipe.difficulty}`);
+          console.log(`Difficulty Score: ${recipe.difficultyScore}`);
+          console.log(`Saved At: ${recipe.savedAt}`);
+          console.log('Ingredients:', recipe.ingredients);
+          console.log('Steps:', recipe.steps);
+          */
+        });
+
+      } catch (error) {
+        // 에러 처리
+        console.error('Failed to fetch recipe:', error);
+      }
+    };
 
 
     // 페이지 변경에 따라 표시할 데이터와 총 페이지 수 계산
     useEffect(() => {
+      // API 호출
+      fetchData();
+
       // 전체 페이지 수 계산
       setTotalPages(Math.ceil(totalItems.length / itemsPerPage));
 
@@ -47,7 +83,8 @@ const History = () => {
               <div key={index} className="w-[300px] h-[300px] rounded-lg bg-yellow-30">
                 <div className="h-[230px]"></div>
                 <p className="flex font-semibold text-lg p-5">
-                  {item}
+                  {/* 레시피 이름 출력 */}
+                  {item.name}
                 </p>
               </div>
             ))}
