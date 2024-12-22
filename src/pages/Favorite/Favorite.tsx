@@ -1,12 +1,63 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useAuth } from '../../context/AuthContext';
+
+import { getRecipe } from "../../api/RecipeSavedApiService";
+import { Recipe } from "../../api/RecipeApiType.ts";
+
 import Header from "../../components/layout/Header"
 import MenuBar from "../../components/layout/MenuBar"
 
 import SavedRecipe from "./components/SavedRecipe"
+import SavedIngredient from "./components/SavedIngredient"
 
 const Favorite = () => {
-    // 레시피/재료 토글 상태
+    // 레시피/재료 컴포넌트트 토글 상태
     const [toggle, setToggle] = useState<number>(0);
+
+    // 로그인 정보 가져오기
+    const { userId } = useAuth();
+    
+    // 아이템 가져오기
+    const [recipeItems, setRecipeItems] = useState<Recipe[]>([]);
+    const fetchData = async () => {
+      if(userId === null)
+        return;
+      
+      try {
+        // getRecipe 함수 호출
+        const data = await getRecipe({ userId });
+        
+        // recipes 배열 추출
+        const recipes: Recipe[] = data.recipes;
+
+        setRecipeItems(recipes);
+
+        // 받은 recipes 배열을 순회하면서 각각의 Recipe 객체 데이터 파싱
+        recipes.forEach((recipe) => {
+          /*
+          console.log(`Recipe Name: ${recipe.name}`);
+          console.log(`Total Time: ${recipe.totalTime}`);
+          console.log(`Difficulty: ${recipe.difficulty}`);
+          console.log(`Difficulty Score: ${recipe.difficultyScore}`);
+          console.log(`Saved At: ${recipe.savedAt}`);
+          console.log('Ingredients:', recipe.ingredients);
+          console.log('Steps:', recipe.steps);
+          */
+        });
+
+      } catch (error) {
+        // 에러 처리
+        console.error('Failed to fetch recipe:', error);
+      }
+    };
+
+
+    // 페이지 변경에 따라 표시할 데이터와 총 페이지 수 계산
+    useEffect(() => {
+      // API 호출
+      fetchData();
+    }, []); // 페이지 렌더링될때마다 실행
+
     
     return (
         <div>
@@ -29,7 +80,7 @@ const Favorite = () => {
               </div>
               
               {/** 렌더링 */}
-              <SavedRecipe />
+              <SavedRecipe totalItems={recipeItems} />
             </>
           ) : (
             <>
@@ -46,6 +97,7 @@ const Favorite = () => {
               </div>
               
               {/** 렌더링 */}
+              <SavedIngredient totalItems={recipeItems}/>
             </>
           )}
         </div>

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
+
 import { Recipe } from "../../../api/RecipeApiType.ts";
 
 interface Props {
-    totalItems: Recipe[]; // 부모로부터 받은 totalItems
+  totalItems: Recipe[]; // 부모로부터 받은 totalItems
 }
 
-const SavedRecipe: React.FC<Props> = ({ totalItems }) => {
+const SavedIngredient: React.FC<Props> = ({ totalItems }) => {
 
     // 페이지 상태 관리
-    const itemsPerPage = 3; // 한 페이지에 보여줄 항목 수
+    const itemsPerPage = 4; // 한 페이지에 보여줄 항목 수
     const [currentItems, setCurrentItems] = useState<Recipe[]>([]); // 현재 페이지에 표시할 아이템들
     const [currentPage, setCurrentPage] = useState(1);    // 아이템 페이지 상태 관리
     const [totalPages, setTotalPages] = useState(1);      // 전체 페이지 상태 관리
@@ -23,7 +24,7 @@ const SavedRecipe: React.FC<Props> = ({ totalItems }) => {
       const startIndex = (currentPage - 1) * itemsPerPage;
       setCurrentItems(totalItems.slice(startIndex, startIndex + itemsPerPage));
     }, [currentPage, totalItems]); // currentPage 또는 totalItems가 변경될 때마다 실행
-    
+
 
     // 페이지 변경 함수
     const movePage = (page: number) => {
@@ -87,4 +88,4 @@ const SavedRecipe: React.FC<Props> = ({ totalItems }) => {
     );
 }
 
-export default SavedRecipe
+export default SavedIngredient
