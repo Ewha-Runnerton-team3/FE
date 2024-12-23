@@ -15,27 +15,29 @@ const RecommendResult: React.FC<Props> = ({ totalItems }) => {
           {/** 추천 레시피 결과 */}
           <div className="p-10 space-y-10">
             {totalItems.map((recipe, index) => (
-              <div key={index} className="flex p-5 w-full h-[150px] rounded-lg bg-yellow-30">
-                <p className="flex font-regular text-md text-goldbrown-50 p-1">
-                  {/* 인덱스 출력 */}
-                  {index}
-                </p>
-                <p className="flex font-regular text-md text-goldbrown-50 p-1">
-                  {/* 레시피 이름 출력 */}
-                  {recipe.name}
-                </p>
+              <div key={index} className="flex justify-between p-3 w-full h-[110px] rounded-lg bg-yellow-30">
+                <div className="flex items-center w-[250px]">
+                  <p className="flex font-regular text-md text-goldbrown-50 p-2">
+                    {/* 인덱스 출력 */}
+                    {index}
+                  </p>
+                  <p className="flex font-semibold text-md text-goldbrown-50 p-2">
+                    {/* 레시피 이름 출력 */}
+                    {recipe.name}
+                  </p>
+                </div>
                 
-                <div>
-                    <div>
-                      <p>조리 예상 시간</p>
+                <div className="bg-yellow-0 rounded-lg p-2">
+                    <div className="flex gap-5">
+                      <p className="w-[120px]">조리 예상 시간</p>
                       {recipe.totalTime}
                     </div>
-                    <div>
-                      <p>조리 난이도</p>
+                    <div className="flex gap-5">
+                      <p className="w-[120px]">조리 난이도</p>
                       {recipe.difficulty}
                     </div>
-                    <div>
-                      <p>조리 스코어</p>
+                    <div className="flex gap-5">
+                      <p className="w-[120px]">조리 스코어</p>
                       {recipe.difficultyScore}
                     </div>
                   </div>
