@@ -15,15 +15,17 @@ const RecommendResult: React.FC<Props> = ({ totalItems }) => {
           {/** 추천 레시피 결과 */}
           <div className="p-10 space-y-10">
             {totalItems.map((recipe, index) => (
-              <div key={index} className="flex p-10 w-full h-[150px] rounded-lg bg-yellow-30">
-                <p className="flex font-semibold text-lg p-5 space-x-10">
+              <div key={index} className="flex p-5 w-full h-[150px] rounded-lg bg-yellow-30">
+                <p className="flex font-regular text-md text-goldbrown-50 p-1">
                   {/* 인덱스 출력 */}
                   {index}
-
+                </p>
+                <p className="flex font-regular text-md text-goldbrown-50 p-1">
                   {/* 레시피 이름 출력 */}
                   {recipe.name}
-
-                  <div>
+                </p>
+                
+                <div>
                     <div>
                       <p>조리 예상 시간</p>
                       {recipe.totalTime}
@@ -37,7 +39,6 @@ const RecommendResult: React.FC<Props> = ({ totalItems }) => {
                       {recipe.difficultyScore}
                     </div>
                   </div>
-                </p>
               </div>
             ))}
           </div>
