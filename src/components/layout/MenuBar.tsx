@@ -27,6 +27,7 @@ const MenuBar = () => {
 
       } catch (err) {
           // 에러 발생 시 처리
+          alert('로그아웃 실패\n' + err);
           console.error('로그아웃 실패:', err);
       }
   };

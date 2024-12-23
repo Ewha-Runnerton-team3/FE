@@ -40,7 +40,8 @@ const LoginPage = () => {
 
         } catch (err) {
             // 에러 발생 시 처리
-            console.error('로그인 실패:', err);
+            alert('로그인 실패\n' + err);
+            console.error('로그인 실패: ', err);
         }
     };
     
