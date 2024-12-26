@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';  // AuthContext에서 userI
 import { postLogout } from "../../api/LogoutApiService";
 
 const MenuBar = () => {
-  const { userId, setUserId } = useAuth();  // userId 값을 AuthContext에서 가져옴
+  const { userId, setUserId, nickname, setNickname } = useAuth();  // userId 값을 AuthContext에서 가져옴
 
   const handleLogout = async () => {
       // API 요청
@@ -23,6 +23,7 @@ const MenuBar = () => {
 
           // 전역 상태에서 userId 초기화
           setUserId(null);
+          setNickname(null);
 
 
       } catch (err) {
@@ -42,10 +43,10 @@ const MenuBar = () => {
       </div>
       <div>
         {/* 로그인된 상태인 경우 사용자 닉네임 표시 */}
-        {userId ? (
+        {nickname ? (
           <div className="space-x-3">
             <p>
-              로그인이 되었습니다: {userId}
+              로그인이 되었습니다: {nickname}
               {/*<p>닉네임: 사용자 닉네임</p> {/* 로그인된 사용자 닉네임 표시 */}
             </p>
             <p onClick={handleLogout} className="cursor-pointer">로그아웃</p>

@@ -9,8 +9,8 @@ import { postLogin } from "../../api/LoginApiService";
 
 
 const LoginPage = () => {
-    // useAuth 훅을 사용하여 전역변수수 setUserId 가져오기
-    const { setUserId } = useAuth();
+    // useAuth 훅을 사용하여 전역변수 setUserId 가져오기
+    const { setUserId, setNickname } = useAuth();
 
     const [id, setId] = useState<string>("");
     const [pwd, setPwd] = useState<string>("");
@@ -33,6 +33,9 @@ const LoginPage = () => {
 
             // 로그인 성공 후 전역 AuthContext에 userId 저장
             setUserId(user.id);
+
+            // 닉네임은 백엔드에서 자동으로 지정해서 주기로 함.
+            setNickname(user.nickname);
             
             // 로그인 성공 후 메인홈 페이지로 리디렉션
             navigate(PATHS.HOME);
