@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext'; // useAuth 훅 임포트
 import Header from "../../components/layout/Header"
 import { useNavigate } from 'react-router-dom';
 import { PATHS } from '../../constants/paths';
-
+import { BASE_URL } from "../../api/axiosInstance";
 import { postLogin } from "../../api/LoginApiService";
 
 
@@ -47,9 +47,14 @@ const LoginPage = () => {
     
     const navigate = useNavigate();
     const handleKakaoLogin = () => {
-        // 이동 (리디렉션)
-        navigate("/auth/kakao");
+        // 프론트 URL + 카카오 로그인 페이지로 이동 (리디렉션)
+        // http://localhost:5173/auth/kakao
+        //navigate(`${BASE_URL}/auth/kakao`);
         
+        // 백엔드드 URL + 카카오 로그인 페이지로 이동 (리디렉션)
+        // http://localhost:3000/auth/kakao
+        window.location.href = `${BASE_URL}/auth/kakao`;
+
         // 로그인 성공 후 userId를 받기?
         //setUserId();
     };
